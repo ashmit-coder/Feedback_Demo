@@ -1,6 +1,12 @@
 import mongoose from "mongoose";
+import { unique } from "next/dist/build/utils";
 
 const feedbackSchema = new mongoose.Schema({
+    feedbackID:{
+        required:true,
+        type:String,
+        unique:true
+    },
     user: {
         type: String,
         required: true,
@@ -54,5 +60,16 @@ interface IFeedback {
     creativity: Number;
 }
 
+interface UpdateFeedback {
+    id:Number;
+    user: string;
+    feedback: string;
+    communication: Number;
+    teamwork: Number;
+    leadership: Number;
+    problem: Number;
+    creativity: Number;
+}
+
 export { feedback };
-export type { IFeedback };
+export type { IFeedback ,UpdateFeedback};
