@@ -48,9 +48,15 @@ const teamMembers: TeamMember[] = [
 export default function TeamSection() {
   return (
     <div className="container mx-auto px-6 py-16">
-      <h2 className="text-4xl font-extrabold text-center mb-12 text-gray-800">
+      <h2 className="text-6xl font-extrabold text-center mb-12 text-white">
         Our Team
       </h2>
+      <p className="text-center mb-8 text-3xl text-white">
+          The team is built up of young minds equipped with talent and have made
+          the app in concern with the amount of feedback issues the industry as
+          well as the customer faces and so address the issue of generalization
+          and stopping scam.
+        </p>
       <div className="row vh-100 flex flex-wrap justify-center">
         {teamMembers.map((member, index) => (
           <div
@@ -69,7 +75,7 @@ export default function TeamSection() {
                 <h5 className="text-lg font-bold">{member.name}</h5>
                 <p className="text-sm text-gray-600">{member.title}</p>
               </div>
-              <ul className="social mt-4 flex justify-center space-x-4">
+              <ul className="social mt-4 flex justify-center space-x-5">
                 <li>
                   <a
                     href={member.linkedin}

@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import TeamSection from './components/TeamSection'
+import FAQ from './components/FAQ'
 
 export default function Home() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null)
@@ -52,6 +53,7 @@ export default function Home() {
     },
   ];
 
+  
  
 
 
@@ -147,34 +149,52 @@ export default function Home() {
 
       <TeamSection/>
 
+      <section className="faq-section mb-12">
+        <h2 className="text-6xl font-bold text-center mb-6 text-white">Frequently Asked Questions</h2>
+        <div className="faq-list">
+          {faqs.map((faq, index) => (
+            <FAQ
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              isOpen={activeAccordion === index}
+              onClick={() => toggleAccordion(index)}
+            />
+          ))}
+        </div>
+      </section>
+
+      
+      
+      
 
       <section className="mb-12">
-  <h2 className="text-3xl text-center font-extrabold mb-4">Users Testimonials</h2>
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
-      <p className="text-gray-600 dark:text-gray-300 italic mb-4">
+  <h2 className="text-6xl text-center font-extrabold mb-4 text-white">Users Testimonials</h2>
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div className="bg-white dark:bg-gray-800 p-6 mb-4 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
+      <p className="text-gray-600 text-2xl  italic mb-4">
         "We finally have a clear picture of customer sentiment! This app's insightful feedback analysis has revolutionized how we understand and meet our audience's needs."
       </p>
       <p className="text-sm font-semibold dark:text-white">Anshul Kumar</p>
       <p className="text-sm text-gray-500 dark:text-gray-400">locahost</p>
     </div>
-    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
-      <p className="text-gray-600 dark:text-gray-300 italic mb-4">
+    <div className="bg-white dark:bg-gray-800 p-6 mb-4 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
+      <p className="text-gray-600 text-2xl  italic mb-4">
         "Since using this app, our team's productivity has skyrocketed. The user-friendly interface makes gathering and responding to feedback a breeze."
       </p>
       <p className="text-sm font-semibold dark:text-white">Saurabh Verma</p>
       <p className="text-sm text-gray-500 dark:text-gray-400">CodeChef</p>
     </div>
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
-      <p className="text-gray-600 dark:text-gray-300 italic mb-4">
+      <p className="text-gray-600 text-2xl italic mb-4">
         "This app has been a game-changer for our internal communication! The real-time feedback loop fosters collaboration and continuous improvement within our teams."
       </p>
       <p className="text-sm font-semibold dark:text-white">Tanmay Khandelwal</p>
       <p className="text-sm text-gray-500 dark:text-gray-400">Striver</p>
     </div>
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md transition duration-300 transform hover:shadow-xl hover:-translate-y-1">
-      <p className="text-gray-600 dark:text-gray-300 italic mb-4">
-        "Gone are the days of clunky surveys and endless spreadsheets! This app streamlines feedback collection, allowing us to gather valuable customer insights quickly and efficiently."
+      <p className="text-gray-600 text-2xl italic mb-4">
+        "Gone are the days of clunky surveys and endless spreadsheets! This app allows us to gather valuable customer insights quickly and efficiently."
       </p>
       <p className="text-sm font-semibold dark:text-white">Akshita Agarwal</p>
       <p className="text-sm text-gray-500 dark:text-gray-400">Research Analyst</p>
@@ -184,12 +204,13 @@ export default function Home() {
 
 
 
-<section className="mb-20 text-center flex flex-col items-center">
-      <div className="flex items-center mb-4">        
+
+<section className="mb-16 text-center flex flex-col items-center">
+      <div className="flex items-center mb-4">
         <div className="mr-5">
           <Image src="/logo.jpg" alt="Logo 1" width={40} height={40} />
         </div>        
-        <h2 className="text-3xl font-bold uppercase animate-colorChange dark:animate-darkColorChange">
+        <h2 className="text-6xl font-bold uppercase text-white">
           Ready to Transform Your Feedback Process?
         </h2>        
         <div className="ml-2">
@@ -204,8 +225,8 @@ export default function Home() {
       </button>
     </section>
 
-    <section className="mb-12">
-      <h2 className="text-3xl font-semibold mb-8 text-center">Learn More</h2>
+    <section className="mb-8">
+      <h2 className="text-6xl font-semibold mb-8 text-center text-white">Learn More</h2>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {articles.map((article, index) => (
           <div

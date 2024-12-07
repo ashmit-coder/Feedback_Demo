@@ -19,7 +19,7 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="fixed top-2  left-4 right-4  bg-white bg-opacity-70 dark:bg-gray-700 shadow-md z-50 transition-opacity duration-300 ease-in-out rounded-full mx-8 my-2">
+    <nav className="fixed top-2  left-4 right-4  bg-white bg-opacity-90 dark:bg-gray-700 shadow-md z-50 transition-opacity duration-300 ease-in-out rounded-full ">
       <div className="max-w-8xl mx-auto px-10 sm:px-6 lg:px-10">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center">
@@ -35,7 +35,7 @@ const Navbar = () => {
                   pathname === item.path
                     ? 'bg-blue-600 text-white'
                     : 'text-black dark:text-gray-300 hover:bg-blue-500 hover:text-white'
-                } px-3 py-3 rounded-full text-lg font-medium`}
+                } px-3 py-3 rounded-full text-lg font-semibold`}
               >
                 {item.name}
               </Link>

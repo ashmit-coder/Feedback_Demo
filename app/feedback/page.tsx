@@ -57,12 +57,12 @@ export default function FeedbackPage() {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <div className="md:col-span-2">
-          <ColleagueList 
-            colleagues={colleagues} 
-            onSelect={setSelectedColleague} 
+          <ColleagueList
+            colleagues={colleagues}
+            onSelect={setSelectedColleague}
           />
           {selectedColleague && (
-            <FeedbackForm 
+            <FeedbackForm
               colleague={selectedColleague}
             />
           )}
