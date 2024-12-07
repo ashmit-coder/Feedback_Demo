@@ -4,6 +4,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 import TeamSection from './components/TeamSection'
 import FAQ from './components/FAQ'
+import Articles from './components/Article'
 
 export default function Home() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null)
@@ -33,27 +34,7 @@ export default function Home() {
       question: 'What happens once I receive feedback?',
       answer: 'The app helps you analyze and categorize your feedback. You can easily identify trends, respond to comments, and track the impact of your actions based on feedback received.',
     },
-  ];
-
-  const articles = [
-    {
-      title: 'The Importance of Constructive Feedback',
-      link: 'https://niftypm.com/blog/constructive-feedback/',
-      image: '/feedback1.jpg',
-    },
-    {
-      title: 'How to Foster a Feedback-Friendly Culture',
-      link: 'https://www.kippy.cloud/post/tips-for-fostering-a-proactive-feedback-culture-in-the-workplace',
-      image: '/feedback2.jpeg',
-    },
-    {
-      title: 'Analyzing Peer Feedback: Best Practices',
-      link: 'https://www.blog.intedashboard.com/blogs/peer-evaluation/best-practices',
-      image: '/feedback3.jpeg',
-    },
-  ];
-
-  
+  ]; 
  
 
 
@@ -207,15 +188,11 @@ export default function Home() {
 
 <section className="mb-16 text-center flex flex-col items-center">
       <div className="flex items-center mb-4">
-        <div className="mr-5">
-          <Image src="/logo.jpg" alt="Logo 1" width={40} height={40} />
-        </div>        
+        
         <h2 className="text-6xl font-bold uppercase text-white">
           Ready to Transform Your Feedback Process?
         </h2>        
-        <div className="ml-2">
-          <Image src="/logo.jpg" alt="Logo 2" width={40} height={40} />
-        </div>
+        
       </div>      
       <button
         className="bg-blue-500 hover:bg-blue-800 text-white font-bold py-5 px-10 rounded-full transition duration-300"
@@ -225,25 +202,10 @@ export default function Home() {
       </button>
     </section>
 
-    <section className="mb-8">
-      <h2 className="text-6xl font-semibold mb-8 text-center text-white">Learn More</h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {articles.map((article, index) => (
-          <div
-            key={index}
-            className="relative bg-white bg-opacity-70 backdrop-blur-md p-4 rounded-lg shadow-md transition-transform duration-300 hover:scale-105"
-          >
-            <a href={article.link} target="_blank" rel="noopener noreferrer" className="block w-full h-full">
-              <h3 className="text-xl text-blue-600 font-bold text-center mb-2">{article.title}</h3>
-              <img src={article.image} alt={article.title} className="w-full h-48 object-cover rounded-lg" />
-            </a>
-          </div>
-        ))}
-      </div>
-    </section>
+    <Articles/>
       
 
-    <section className="relative mb-10 bg-cover bg-center" style={{ backgroundImage: "url('/background.jpg')"}}>
+    <section className="relative mb-20 bg-cover bg-center" style={{ backgroundImage: "url('/background.jpg')"}}>
   <div className="absolute inset-0 bg-black opacity-10"></div>
   <div className="relative max-w-8xl mx-auto p-8 flex flex-col md:flex-row justify-center items-center">    
     <form className="bg-white bg-opacity-70 backdrop-blur-lg p-6 rounded-lg shadow-md w-full md:w-2/3">
