@@ -1,3 +1,5 @@
+"use server"
+
 import { NextRequest,NextResponse } from "next/server";
 import {feedback,UpdateFeedback }from "../../models/user";
 import mongoose from "mongoose";

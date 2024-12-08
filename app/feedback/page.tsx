@@ -61,9 +61,11 @@ export default function FeedbackPage() {
       { id: 3, name: 'Yanshi', role: 'UI/UX Designer', relationship: 'Team Member', score: 4.6 }
     ])
 
-    fetchFeedbacks()
   }, [])
 
+  useEffect(()=>{
+    fetchFeedbacks();
+  },[])
   const fetchFeedbacks = async () => {
     try {
       const response = await fetch('/api/feedback/get')

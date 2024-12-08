@@ -45,10 +45,10 @@ export default function FeedbackForm({ colleague }: Props) {
     fetchFeedbacks();
   }, []);
 
-  if (!colleague) {
-    alert("Please select a colleague.");
-    return;
-  }
+  // if (!colleague) {
+  //   alert("Please select a colleague.");
+  //   return;
+  // }
   
   const fetchFeedbacks = async () => {
     try {
@@ -66,7 +66,7 @@ export default function FeedbackForm({ colleague }: Props) {
     if (sentiment < 0) {
       alert('Write feedback');
     }
-    let data : any = { user: colleague.name, feedback: feedback, communication: ratings.communication,
+    let data : any = { user: (colleague || {name:"NULL"}).name , feedback: feedback, communication: ratings.communication,
       teamwork: ratings.teamwork, leadership: ratings.leadership, problem: ratings.problemSolving, creativity: ratings.creativity }
   
     axios.post("/api/feedback", data).then((response: any) => {
