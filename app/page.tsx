@@ -5,6 +5,7 @@ import Image from 'next/image'
 import TeamSection from './components/TeamSection'
 import FAQ from './components/FAQ'
 import Articles from './components/Article'
+import { FaLinkedin, FaEnvelope } from 'react-icons/fa'
 
 export default function Home() {
   const [activeAccordion, setActiveAccordion] = useState<number | null>(null)
@@ -39,7 +40,7 @@ export default function Home() {
 
 
   return (
-    <main className="container mx-auto px-4 py-8">
+    <main className="min-h-screen container mx-auto px-4 py-8">
       <section className="mb-8 text-center">
         <h1 className="text-5xl font-extrabold mb-2 text-white">
           Empowering Customers, Building Better Businesses.
@@ -203,33 +204,48 @@ export default function Home() {
     </section>
 
     <Articles/>
+
+    <footer className="bg-[#1e3a8a] text-white py-12 w-full bottom-0 left-0">
+
+        <div className="container mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">          
+          <div>
+            <h3 className="text-xl font-bold mb-4">About the Website</h3>
+            <ul>
+              <li><a href="#" className="text-white hover:text-gray-400">FAQ</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">About Us</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Contact Us</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Home</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Motivation</a></li>
+            </ul>
+          </div>          
+          <div>
+            <h3 className="text-xl font-bold mb-4">Professional</h3>
+            <ul>
+              <li><a href="#" className="text-white hover:text-gray-400">Careers</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Partnerships</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Models</a></li>
+              <li><a href="#" className="text-white hover:text-gray-400">Documentation</a></li>
+            </ul>
+          </div>         
+          <div>
+            <h3 className="text-xl font-bold mb-4">Get in Touch</h3>
+            <div className="flex items-center space-x-4">
+              <a href="https://www.linkedin.com" className="text-white hover:text-gray-400">
+                <FaLinkedin size={24} />
+              </a>
+              <a href="mailto:example@example.com" className="text-white hover:text-gray-400">
+                <FaEnvelope size={24} />
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="text-center text-sm text-gray-400 mt-8">
+          <p>&copy; 2024 Your Website. All rights reserved.</p>
+        </div>
+      </footer>
       
 
-    <section className="relative mb-20 bg-cover bg-center" style={{ backgroundImage: "url('/background.jpg')"}}>
-  <div className="absolute inset-0 bg-black opacity-10"></div>
-  <div className="relative max-w-8xl mx-auto p-8 flex flex-col md:flex-row justify-center items-center">    
-    <form className="bg-white bg-opacity-70 backdrop-blur-lg p-6 rounded-lg shadow-md w-full md:w-2/3">
-      <div className="mb-4">
-        <label htmlFor="name" className="block text-gray-700 font-bold mb-2">Name</label>
-        <input type="text" id="name" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="email" className="block text-gray-700 font-bold mb-2">Email</label>
-        <input type="email" id="email" className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required />
-      </div>
-      <div className="mb-4">
-        <label htmlFor="message" className="block text-gray-700 font-bold mb-2">Message</label>
-        <textarea id="message" rows={4} className="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" required></textarea>
-      </div>
-      <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300">Send Message</button>
-    </form>
-    <div className="mb-20 md:mb-15  text-black w-full md:w-1/2">
-      <h2 className="text-5xl font-extrabold text-right mb-3 ">
-        Contact Us !
-      </h2>
-    </div>
-  </div>
-</section>
+    
 
     </main>
   );

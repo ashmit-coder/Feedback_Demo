@@ -20,14 +20,14 @@ type MostValuedColleague = {
 }
 
 type Feedback = {
-    user: string
-    feedback: string
-    communication: number
-    teamwork: number
-    leadership: number
-    problem: number
-    creativity: number
-  }
+  user: string
+  feedback: string
+  communication: number
+  teamwork: number
+  leadership: number
+  problem: number
+  creativity: number
+}
 
 export default function FeedbackPage() {
   const [selectedColleague, setSelectedColleague] = useState<Colleague | null>(null)
@@ -56,9 +56,9 @@ export default function FeedbackPage() {
     ])
 
     setMostValuedColleagues([
-      { id: 1, name: 'Neer', role: 'Project Manager',relationship: 'Team Member', score: 4.8 },
-      { id: 2, name: 'Shweta', role: 'Senior Developer',relationship: 'Team Lead', score: 4.7 },
-      { id: 3, name: 'Yanshi', role: 'UI/UX Designer',relationship: 'Team Member', score: 4.6 }
+      { id: 1, name: 'Neer', role: 'Project Manager', relationship: 'Team Member', score: 4.8 },
+      { id: 2, name: 'Shweta', role: 'Senior Developer', relationship: 'Team Lead', score: 4.7 },
+      { id: 3, name: 'Yanshi', role: 'UI/UX Designer', relationship: 'Team Member', score: 4.6 }
     ])
 
     fetchFeedbacks()
@@ -76,43 +76,49 @@ export default function FeedbackPage() {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h1 className="text-6xl text-center font-bold mb-6 text-white">⭐Provide Feedback⭐</h1>
-      <p className=" text-2xl mb-10 text-center text-white">Here are some ways to provide constructive feedback to your colleagues. Select your colleagues from the dropdown below and dont forget to score them on the basis of their softskills!!</p>
+      <h1 className="text-6xl text-center font-bold mb-6 text-white">⭐ Provide Feedback ⭐</h1>
+      <p className="text-2xl mb-10 text-center text-white">
+        Select a colleague from the list below to provide constructive feedback and rate their soft skills!
+      </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div className="md:col-span-2">
-          <ColleagueList
-            colleagues={colleagues}
-            onSelect={setSelectedColleague}
-          />
-          {selectedColleague && (
-            <FeedbackForm
-              colleague={selectedColleague}
-            />
-          )}          
-
-        </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">       
         <div className="md:col-span-1">
-          <h2 className="text-2xl font-extrabold text-center mb-4 text-white">Most Valued Colleagues</h2>
-          <ul className="space-y-3">
-            {mostValuedColleagues.map((colleague) => (
-              <li key={colleague.id} className="flex flex-col items-center bg-white bg-gray-800 p-4 rounded-lg shadow transition-transform duration-300 hover:shadow-lg hover:scale-105">
-                <img
-                  src="/ashish.jpg"
-                  alt={`${colleague.name}'s photo`}
-                  className="mb-2 w-24 h-24 rounded-full object-cover"
-                />
-                <div className="text-center">
-                  <h3 className=" text-lg font-extrabold text-white">{colleague.name}</h3>
-                  <p className="text-lg text-gray-600 font-semibold text-gray-300">{colleague.role}</p>
-                  <p className="text-sm text-gray-600 font-semibold text-gray-300">Relationship: {colleague.relationship}</p>
-                  <span className="text-lg font-bold text-green-500 text-green-400">{colleague.score.toFixed(1)}</span>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <ColleagueList colleagues={colleagues} onSelect={setSelectedColleague} />
+        </div>
+        
+        <div className="md:col-span-2">
+          <FeedbackForm
+            colleague={selectedColleague}
+            isFormDisabled={!selectedColleague}
+          />
         </div>
       </div>
+
+      
+      <div className="mt-12">
+        <h2 className="text-2xl font-extrabold text-center mb-4 text-white">Most Valued Colleagues</h2>
+        <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {mostValuedColleagues.map((colleague) => (
+            <li
+              key={colleague.id}
+              className="flex flex-col items-center bg-gray-800 p-4 rounded-lg shadow hover:shadow-lg hover:scale-105 transition-transform duration-300"
+            >
+              <img
+                src="/anshul.jpg"
+                alt={`${colleague.name}'s photo`}
+                className="mb-2 w-24 h-24 rounded-full object-cover"
+              />
+              <div className="text-center">
+                <h3 className="text-lg font-bold text-white">{colleague.name}</h3>
+                <p className="text-sm text-gray-300">{colleague.role}</p>
+                <span className="text-lg font-bold text-green-400">{colleague.score.toFixed(1)}</span>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+     
       <div className="mt-12">
         <button
           onClick={() => setShowFeedbacks(!showFeedbacks)}
@@ -150,6 +156,6 @@ export default function FeedbackPage() {
           </div>
         )}
       </div>
-    </div>    
+    </div>
   )
 }

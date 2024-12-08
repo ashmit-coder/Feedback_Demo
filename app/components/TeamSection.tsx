@@ -1,5 +1,9 @@
 'use client';
-import { FontAwesomeIcon } from "@fortawesome/react-fontAwesome";
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLinkedin } from '@fortawesome/free-brands-svg-icons'; 
+import { faEnvelope } from '@fortawesome/free-solid-svg-icons'; 
+import { faCode } from '@fortawesome/free-solid-svg-icons';
 
 interface TeamMember {
   name: string;
@@ -61,7 +65,7 @@ export default function TeamSection() {
         {teamMembers.map((member, index) => (
           <div
             key={index}
-            className="col-sm-6 col-lg-3 my-auto p-4"
+            className="col-sm-6 col-lg-4 my-auto p-6"
           >
             <div className="box shadow-sm p-4 transition-all">
               <div className="image-wrapper mb-3">
@@ -75,15 +79,15 @@ export default function TeamSection() {
                 <h5 className="text-lg font-bold">{member.name}</h5>
                 <p className="text-sm text-gray-600">{member.title}</p>
               </div>
-              <ul className="social mt-4 flex justify-center space-x-5">
+              <ul className="social mt-5 flex justify-center space-x-3">
                 <li>
                   <a
                     href={member.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="transition-all w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-white hover:bg-black hover:text-white"
+                    className="transition-all w-5 h-5 flex items-center justify-center rounded-full bg-gradient-to-r from-blue-500 to-blue-400 text-white hover:bg-black hover:text-white"
                   >
-                    <FontAwesomeIcon icon={['fab', 'linkedin']} />
+                    <FontAwesomeIcon icon={faLinkedin} />
                   </a>
                 </li>
                 <li>
@@ -93,7 +97,7 @@ export default function TeamSection() {
                     rel="noopener noreferrer"
                     className="transition-all w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-orange-500 to-orange-400 text-white hover:bg-black hover:text-white"
                   >
-                    <i className="fas fa-code"></i>
+                    <FontAwesomeIcon icon={faCode} />
                   </a>
                 </li>
                 <li>
@@ -101,7 +105,7 @@ export default function TeamSection() {
                     href={member.mail}
                     className="transition-all w-10 h-10 flex items-center justify-center rounded-full bg-gradient-to-r from-red-500 to-red-400 text-white hover:bg-black hover:text-white"
                   >
-                    <i className="fas fa-envelope"></i>
+                    <FontAwesomeIcon icon={faEnvelope} />
                   </a>
                 </li>
               </ul>

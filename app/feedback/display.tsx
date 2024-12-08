@@ -40,7 +40,7 @@ export default function FeedbackDisplay() {
               key={index}
               className="p-4 bg-gray-800 text-white rounded-lg shadow-lg transition-transform duration-300 hover:shadow-xl hover:scale-105"
             >
-              <h2 className="text-lg font-bold mb-2">Feedback for: {feedback.user}</h2>
+              <h2 className="text-2xl font-bold mb-2">Feedback for: {feedback.user}</h2>
               <p className="mb-4">{feedback.feedback}</p>
               <div className="grid grid-cols-2 gap-4">
                 <div>

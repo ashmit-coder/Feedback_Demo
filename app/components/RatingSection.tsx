@@ -1,51 +1,59 @@
 import React from 'react'
 
-type Ratings = {
-  communication: number
-  teamwork: number
-  leadership: number
-  problemSolving: number
-  creativity: number
-}
-
 type Props = {
-  ratings: Ratings
-  setRatings: React.Dispatch<React.SetStateAction<Ratings>>
+  ratings: {
+    communication: number
+    teamwork: number
+    leadership: number
+    problemSolving: number
+    creativity: number
+  }
+  setRatings: React.Dispatch<
+    React.SetStateAction<{
+      communication: number
+      teamwork: number
+      leadership: number
+      problemSolving: number
+      creativity: number
+    }>
+  >
+  disabled: boolean
 }
 
-export default function RatingSection({ ratings, setRatings }: Props) {
-  const handleRatingChange = (aspect: keyof Ratings, value: number) => {
-    setRatings(prev => ({ ...prev, [aspect]: value }))
+const RatingSection: React.FC<Props> = ({ ratings, setRatings, disabled }) => {
+  const handleRatingChange = (category: keyof typeof ratings, value: number) => {
+    if (!disabled) {
+      setRatings((prevRatings) => ({
+        ...prevRatings,
+        [category]: value,
+      }))
+    }
   }
 
-  const renderRating = (aspect: keyof Ratings, label: string) => (
-    <div>
-      <label className="block mb-2 font-medium text-white">{label}</label>
-      <div className="flex space-x-2">
-        {[1, 2, 3, 4, 5].map((value) => (
-          <button
-            key={value}
-            type="button"
-            onClick={() => handleRatingChange(aspect, value)}
-            className={`w-10 h-10 rounded-full ${
-              ratings[aspect] >= value ? 'bg-yellow-400' : 'bg-gray-200'
-            } text-black transition-colors duration-200`}
-          >
-            {value}
-          </button>
-        ))}
-      </div>
-    </div>
-  );
-
   return (
-    <div className="space-y-6">
-      <h3 className=" text-4xl font-extrabold text-center text-white">Ratings</h3>
-      {renderRating('communication', 'COMMUNICATION')}
-      {renderRating('teamwork', 'TEAMWORK')}
-      {renderRating('leadership', 'LEADERSHIP')}
-      {renderRating('problemSolving', 'PROBLEM SOLVING')}
-      {renderRating('creativity', 'CREATIVITY')}
+    <div className="space-y-4">
+      {Object.entries(ratings).map(([category, value]) => (
+        <div key={category} className="flex items-center justify-between">
+          <label className="capitalize text-xl text-white mx-8">{category}</label>
+          <div className="flex items-center space-x-3">
+            {[1, 2, 3, 4, 5].map((rating) => (
+              <button
+                key={rating}
+                type="button"
+                onClick={() => handleRatingChange(category as keyof typeof ratings, rating)}
+                disabled={disabled}
+                className={`w-20 h-15 flex items-center justify-center rounded-full border-2 text-lg font-semibold ${
+                  value >= rating ? 'bg-blue-500 border-blue-600 text-white' : 'bg-gray-700 border-gray-500 text-gray-300'
+                } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+              >
+                {rating} 
+              </button>
+            ))}
+          </div>
+        </div>
+      ))}
     </div>
   )
 }
+
+export default RatingSection

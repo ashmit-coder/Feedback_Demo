@@ -18,23 +18,34 @@ type Props = {
 
 export default function FeedbackForm({ colleague }: Props) {
   const [feedbackList, setFeedbackList] = useState([]);
-  const [feedback, setFeedback] = useState('')
-  const [isAnonymous, setIsAnonymous] = useState(false)
+  const [feedback, setFeedback] = useState('');
+  const [isAnonymous, setIsAnonymous] = useState(false);
   const [ratings, setRatings] = useState({
     communication: 0,
     teamwork: 0,
     leadership: 0,
     problemSolving: 0,
     creativity: 0
-  })
+  });
+
+  
+  useEffect(() => {
+    setRatings({
+      communication: 0,
+      teamwork: 0,
+      leadership: 0,
+      problemSolving: 0,
+      creativity: 0
+    });
+  }, [colleague]); 
 
   useEffect(() => {
     fetchFeedbacks();
-  }, [])
+  }, []);
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch("/api/feedback");
+      const response = await fetch("/api/feedback/get");
       const data = await response.json();
       setFeedbackList(data);
     } catch (error) {
@@ -43,28 +54,27 @@ export default function FeedbackForm({ colleague }: Props) {
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    const sentiment = await analyzeSentiment(feedback)
+    e.preventDefault();
+    const sentiment = await analyzeSentiment(feedback);
     if (sentiment < 0) {
-      alert('Write feedback')
+      alert('Write feedback');
     }
-    let data :any = { user:colleague.name, feedback: feedback, communication:ratings.communication,
-      teamwork: ratings.teamwork, leadership: ratings.leadership, problem: ratings.problemSolving, creativity: ratings.creativity}
+    let data : any = { user: colleague.name, feedback: feedback, communication: ratings.communication,
+      teamwork: ratings.teamwork, leadership: ratings.leadership, problem: ratings.problemSolving, creativity: ratings.creativity }
   
-      axios.post("/api/feedback",data = data).then((response : any) =>{
-        console.log("Feedback saved successfully", response);
-        window.location.reload()
-      });
-  }
+    axios.post("/api/feedback", data).then((response: any) => {
+      console.log("Feedback saved successfully", response);
+      window.location.reload();
+    });
+  };
 
   const handleSaveDraft = () => {
-    
-    console.log('Draft saved', { colleague, feedback, isAnonymous, ratings })
-  }
+    console.log('Draft saved', { colleague, feedback, isAnonymous, ratings });
+  };
 
   return (
     <form onSubmit={handleSubmit} className="space-y-2">
-      <h2 className="text-xl font-semibold text-white">Feedback for {colleague.name}</h2>
+      <h2 className="text-xl font-semibold text-white">Feedback for {colleague?.name}</h2>
       
       <div>
         <label htmlFor="feedback" className="block text-m mb-2 text-white">Your Feedback</label>
@@ -72,13 +82,13 @@ export default function FeedbackForm({ colleague }: Props) {
           id="feedback"
           value={feedback}
           onChange={(e) => setFeedback(e.target.value)}
-          className="w-full p-4 border text-black  rounded-lg"
+          className="w-full p-4 border text-black rounded-lg"
           rows={5}
           required
         />
       </div>
 
-      <RatingSection ratings={ratings} setRatings={setRatings} />
+      <RatingSection ratings={ratings} setRatings={setRatings} disabled={false} />
 
       <div>
         <label className="flex items-center text-white">
@@ -92,7 +102,7 @@ export default function FeedbackForm({ colleague }: Props) {
         </label>
       </div>
 
-      <div className="flex space-x-5 ">
+      <div className="flex space-x-5">
         <button type="submit" className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 rounded-lg">
           Submit Feedback
         </button>
