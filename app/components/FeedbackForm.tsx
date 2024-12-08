@@ -13,13 +13,15 @@ type Colleague = {
 }
 
 type Props = {
-  colleague: Colleague
+  colleague: Colleague | null;
+  isFormDisabled: boolean;
 }
 
 export default function FeedbackForm({ colleague }: Props) {
   const [feedbackList, setFeedbackList] = useState([]);
   const [feedback, setFeedback] = useState('');
   const [isAnonymous, setIsAnonymous] = useState(false);
+  
   const [ratings, setRatings] = useState({
     communication: 0,
     teamwork: 0,
@@ -43,6 +45,11 @@ export default function FeedbackForm({ colleague }: Props) {
     fetchFeedbacks();
   }, []);
 
+  if (!colleague) {
+    alert("Please select a colleague.");
+    return;
+  }
+  
   const fetchFeedbacks = async () => {
     try {
       const response = await fetch("/api/feedback/get");

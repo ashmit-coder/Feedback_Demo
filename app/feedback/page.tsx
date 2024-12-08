@@ -30,7 +30,7 @@ type Feedback = {
 }
 
 export default function FeedbackPage() {
-  const [selectedColleague, setSelectedColleague] = useState<Colleague | null>(null)
+  const [selectedColleague, setSelectedColleague] = useState<Colleague | null>(null);
   const [colleagues, setColleagues] = useState<Colleague[]>([])
   const [mostValuedColleagues, setMostValuedColleagues] = useState<MostValuedColleague[]>([])
   const [feedbackList, setFeedbackList] = useState<Feedback[]>([])
